@@ -1,0 +1,29 @@
+module christmas_waveform(
+    input wire clk,
+    output reg [10:0] output_waveform
+);
+
+reg [31:0] counter = 0; // Counter to control timing
+
+always @(posedge clk) begin
+    // Increment the counter on every clock edge
+    counter <= counter + 1;
+    
+    // Generate the waveform based on time
+    case (counter)
+        0: output_waveform <= 11'b00000000000; // M
+        10: output_waveform <= 11'b00000000001; // C
+        20: output_waveform <= 11'b00000000100; // H
+        30: output_waveform <= 11'b00000001100; // R
+        40: output_waveform <= 11'b00000011100; // I
+        50: output_waveform <= 11'b00000111100; //  
+        60: output_waveform <= 11'b00001111100; // S
+        70: output_waveform <= 11'b00011111100; // T
+        80: output_waveform <= 11'b00111111100; // M
+        90: output_waveform <= 11'b01111111100; // A
+        100: output_waveform <= 11'b11111111100; // S
+        default: output_waveform <= 11'b00000000000; // Default to 0 for other times
+    endcase
+end
+
+endmodule
